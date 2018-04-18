@@ -37,15 +37,19 @@ public interface SimbolosTerminales {
 	 public static final int LT = 28;
 	 //Asignacion
 	 public static final int ASIG = 29;
+	 public static final int SAL = 30;
 	 //Separadores
-	 public static final int SEMI = 30;
-	 public static final int LPAREN = 31;
-	 public static final int RPAREN = 32;
-	 public static final int LBRACK = 33;
-	 public static final int RBRACK = 34;
+	 public static final int SEMI = 31;
+	 public static final int LPAREN = 32;
+	 public static final int RPAREN = 33;
+	 public static final int LBRACK = 34;
+	 public static final int RBRACK = 35;
 	 //Numeros
-	 public static final int INT_NUMBER = 35;
-	 public static final int DEC_NUMBER = 36;
+	 public static final int INT_NUMBER = 36;
+	 public static final int DEC_NUMBER = 37;
+	 
+	 //Otros
+	 public static final int CHAR = 38;
 	 
 	// …
 
@@ -81,13 +85,15 @@ public interface SimbolosTerminales {
 	 "GT",
 	 "LT",
 	 "ASIG",
+	 "SAL",
 	 "SEMI",
 	 "LPAREN",
 	 "RPAREN",
 	 "LBACK",
 	 "RBACK",
 	 "INT_NUMBER",
-	 "DEC_NUMER"
+	 "DEC_NUMER",
+	 "CHAR"
 	 };
 
 }

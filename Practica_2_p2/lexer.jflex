@@ -19,21 +19,18 @@ import lex.manual.Symbol;
 
 Whitespace = [ \t\f] | {LineTerminator}
 LineTerminator = \r|\n|\r\n
-
-
-
 InputCharacter = [^\r\n]
 
 /*Palabras reservadas*/
 True = [Tt][Rr][Uu][Ee]
 False = [Ff][Aa][Ll][Ss][Ee]
 Entero = [Ee][Nn][Tt][Ee][Rr][Oo]
+Caracter = [Cc][Aa][Rr][Aa][Cc][Tt][Ee][Rr]
 Real = [Rr][Ee][Aa][Ll]
 Finmientras = [Ff][Ii][Nn][Mm][Ii][Ee][Nn][Tt][Rr][Aa][Ss]
 Not = [Nn][Oo][Tt]
 Booleano = [Bb][Oo][Oo][Ll][Ee][Aa][Nn][Oo]
 Vector = [Vv][Ee][Cc][Tt][Oo][Rr]
-Caracter = [Cc][Aa][Rr][Aa][Cc][Tt][Ee][Rr]
 Mientras = [Mm][Ii][Ee][Nn][Tt][Rr][Aa][Ss]
 Si = [Ss][Ii]
 Entonces = [Ee][Nn][Tt][Oo][Nn][Cc][Ee][Ss]
@@ -42,6 +39,12 @@ Finsi = [Ff][Ii][Nn][Ss][Ii]
 And = [Aa][Nn][Dd]
 Or = [Oo][Rr]
 
+/*Identificador*/
+Identificador = [a-zA-Z] {subIden}*
+subIden=  [a-zA-Z]* | "_" | {NumLiteral}
+
+/*char*/
+Char = "‘" {InputCharacter} "’" | "'" {InputCharacter} "'"
 
 /*Numeros*/
 NumLiteral = [0-9]*
@@ -69,26 +72,30 @@ InputCharacter = [^\r\n]
 <YYINITIAL> {
 	  {Whitespace}  {/*ignorar*/}
 	  {Comentario} 	{/*ignorar*/}
-	  {True}	    { return new Symbol (BOOLEAN_LITERAL, Boolean.TRUE); }
-	  {False} 		{ return new Symbol (BOOLEAN_LITERAL, Boolean.FALSE); }
-	  {Entero}		{ return new Symbol (ENTERO, "ENTERO"); }
-	  {Real} 		{ return new Symbol (REAL, "REAL"); }
-	  {Finmientras} { return new Symbol (FINMIENTRAS, "FINMIENTRAS"); }
-	  {Not} 		{ return new Symbol (NOT, "NOT"); }
-	  {Booleano} 	{ return new Symbol (BOOLEANO, "BOOLEANO"); }
-	  {Vector} 		{ return new Symbol (VECTOR, "VECTOR"); }
-	  {Caracter} 	{ return new Symbol (CARACTER, "CARACTER"); }
-	  {Mientras} 	{ return new Symbol (MIENTRAS, "MIENTRAS"); }
-	  {Si} 			{ return new Symbol (SI, "SI"); }
-	  {Entonces} 	{ return new Symbol (ENTONCES, "ENTONCES"); }
-	  {Sino} 		{ return new Symbol (SINO, "SINO"); }
-	  {Finsi} 		{ return new Symbol (FINSI, "FINSI"); }
-	  {And} 		{ return new Symbol (AND, "AND"); }
-	  {Or} 			{ return new Symbol (OR, "OR"); }
+	  {True}	    { return new Symbol(BOOLEAN_LITERAL, Boolean.TRUE); }
+	  {False} 		{ return new Symbol(BOOLEAN_LITERAL, Boolean.FALSE); }
+	  {Entero}		{ return new Symbol(ENTERO, "ENTERO"); }
+	  {Real} 		{ return new Symbol(REAL, "REAL"); }
+	  {Finmientras} { return new Symbol(FINMIENTRAS, "FINMIENTRAS"); }
+	  {Not} 		{ return new Symbol(NOT, "NOT"); }
+	  "¬"			{ return new Symbol(NOT, "NOT"); }
+	  {Booleano} 	{ return new Symbol(BOOLEANO, "BOOLEANO"); }
+	  {Vector} 		{ return new Symbol(VECTOR, "VECTOR"); }
+	  {Caracter} 	{ return new Symbol(CARACTER, "CARACTER"); }
+	  {Mientras} 	{ return new Symbol(MIENTRAS, "MIENTRAS"); }
+	  {Si} 			{ return new Symbol(SI, "SI"); }
+	  {Entonces} 	{ return new Symbol(ENTONCES, "ENTONCES"); }
+	  {Sino} 		{ return new Symbol(SINO, "SINO"); }
+	  {Finsi} 		{ return new Symbol(FINSI, "FINSI"); }
+	  {And} 		{ return new Symbol(AND, "AND"); }
+	  "&"	 		{ return new Symbol(AND, "AND"); }
+	  {Or} 			{ return new Symbol(OR, "OR"); }
+  	  "|"			{ return new Symbol(OR, "OR"); }
 	  "="          	{ return new Symbol(EQ, "EQ"); }
  	  ";"          	{ return new Symbol(SEMI, "SEMI"); }
   	  "+"          	{ return new Symbol(PLUS, "PLUS"); }
    	  "-"          	{ return new Symbol(MINUS, "MINUS"); }
+   	  "–"			{ return new Symbol(MINUS, "MINUS"); }
   	  "*"          	{ return new Symbol(TIMES, "TIMES"); }
   	  "=="		   	{ return new Symbol(EQEQ, "EQEQ"); }
   	  "<="		   	{ return new Symbol(LTEQ, "LTEQ"); }
@@ -97,10 +104,18 @@ InputCharacter = [^\r\n]
   	  "<"		   	{ return new Symbol(LT, "LT"); }
   	  ">"		   	{ return new Symbol(GT, "GT"); }
   	  "<-"			{ return new Symbol(ASIG, "ASIG"); }
+  	  "->"			{ return new Symbol(SAL, "SAL"); }
+  	  "/"			{ return new Symbol(DIVIDEBY, "DIVIDEBY"); }
+  	  "("		   	{ return new Symbol(LPAREN, "LPAREN"); }
+  	  ")"		   	{ return new Symbol(RPAREN, "RPAREN"); }
+  	  "["		   	{ return new Symbol(LBRACK, "LBRACK"); }
+  	  "]"		   	{ return new Symbol(RBRACK, "RBRACK"); }
   	  {Int_Number} 	{ return new Symbol(INT_NUMBER, Integer.parseInt(yytext())); }
   	  {Dec_Number} 	{ return new Symbol(DEC_NUMBER, Float.parseFloat(yytext())); }
       {Hex_Number} 	{ return new Symbol(INT_NUMBER, Integer.parseInt(yytext().substring(2, yytext().length()), 16));}
       {Oct_Number} 	{ return new Symbol(INT_NUMBER, Integer.parseInt(yytext().substring(3, yytext().length()), 8));}
+      {Identificador} { return new Symbol(IDENTIFICADOR, "IDENTIFICADOR"); }
+      {Char} 		{ return new Symbol(CHAR, "CHAR"); }
 
 }
 

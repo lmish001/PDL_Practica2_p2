@@ -56,9 +56,38 @@ public interface SimbolosTerminales {
 	 "IDENTIFICADOR",
 	 "BOOLEAN_LITERAL",
 	 "ENTERO",
-	 "REAL"
-	// "numero"
-	//....
+	 "REAL",
+	 "FINMIENTRAS",
+	 "NOT",
+	 "BOOLEANO",
+	 "VECTOR",
+	 "CARACTER",
+	 "MIENTRAS",
+	 "SI",
+	 "ENTONCES",
+	 "SINO",
+	 "FINSI",
+	 "AND",
+	 "OR",
+	 "EQ",
+	 "PLUS",
+	 "MINUS",
+	 "TIMES",
+	 "DIVIDEBY",
+	 "NOTEQ",
+	 "EQEQ",
+	 "LTEQ",
+	 "GTEQ",
+	 "GT",
+	 "LT",
+	 "ASIG",
+	 "SEMI",
+	 "LPAREN",
+	 "RPAREN",
+	 "LBACK",
+	 "RBACK",
+	 "INT_NUMBER",
+	 "DEC_NUMER"
 	 };
 
 }

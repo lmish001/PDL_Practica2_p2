@@ -67,7 +67,8 @@ InputCharacter = [^\r\n]
 
 /* Reglas para detectar los tokens y acciones asociadas */
 <YYINITIAL> {
-	  {Whitespace} {}
+	  {Whitespace}  {/*ignorar*/}
+	  {Comentario} 	{/*ignorar*/}
 	  {True}	    { return new Symbol (BOOLEAN_LITERAL, Boolean.TRUE); }
 	  {False} 		{ return new Symbol (BOOLEAN_LITERAL, Boolean.FALSE); }
 	  {Entero}		{ return new Symbol (ENTERO, "ENTERO"); }
@@ -96,7 +97,6 @@ InputCharacter = [^\r\n]
   	  "<"		   	{ return new Symbol(LT, "LT"); }
   	  ">"		   	{ return new Symbol(GT, "GT"); }
   	  "<-"			{ return new Symbol(ASIG, "ASIG"); }
-  	  {Commentario} { }
   	  {Int_Number} 	{ return new Symbol(INT_NUMBER, Integer.parseInt(yytext())); }
   	  {Dec_Number} 	{ return new Symbol(DEC_NUMBER, Float.parseFloat(yytext())); }
       {Hex_Number} 	{ return new Symbol(INT_NUMBER, Integer.parseInt(yytext().substring(2, yytext().length()), 16));}

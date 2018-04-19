@@ -114,8 +114,8 @@ InputCharacter = [^\r\n]
   	  {Dec_Number} 	{ return new Symbol(DEC_NUMBER, Float.parseFloat(yytext())); }
       {Hex_Number} 	{ return new Symbol(INT_NUMBER, Integer.parseInt(yytext().substring(2, yytext().length()), 16));}
       {Oct_Number} 	{ return new Symbol(INT_NUMBER, Integer.parseInt(yytext().substring(3, yytext().length()), 8));}
-      {Identificador} { return new Symbol(IDENTIFICADOR, "IDENTIFICADOR"); }
-      {Char} 		{ return new Symbol(CHAR, "CHAR"); }
+      {Identificador} { return new Symbol(IDENTIFICADOR, yytext()); }
+      {Char} 		{ return new Symbol(CHAR, yytext()); }
 
 }
 

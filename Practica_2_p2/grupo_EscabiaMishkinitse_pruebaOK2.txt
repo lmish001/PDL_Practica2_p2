@@ -1,6 +1,9 @@
 #######################
 # Programa de ejemplo #
 #######################
+SI en2==3 OR bo3 AND re1 
+ENTONCES en2 <- en2+3; 
+oxAF1 + 3.E2;
 ### Declaracion de variables
 REAL re1;
 ENTERO en2 <- 6; # con asignación de valor
@@ -8,7 +11,8 @@ BOOLEANO bo3 <- 5<3; # se asigna el resultado de una expresión
 CARACTER ca4 <- ‘h’; # variable de tipo carácter, y su literal
 VECTOR REAL punto1[3]; # declaración variable vector dim 3
 ### Expresiones
-5 + 6; # operacion
+5 + 6.; # operacion
+5.E-10+6.34E+2-2.356701E7;
 re1 <- 3.7; # asignación simple
 bo3 <- bo3 < 7 AND 5.46+7*en2 | 4; # asignación compleja
 punto1[1]<- 0.0; # campo de variable struct

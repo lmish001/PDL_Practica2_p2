@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Driver {
 	public static void main(String args[]) throws IOException{
 		// Entrada de datos: por fichero 
-		InputStream dataStream = new FileInputStream("grupo_50_prueba1OK.txt");
+		InputStream dataStream = new FileInputStream("grupo_EscabiaMishkinitse_pruebaOK2.txt");
 		
 		  // Creamos el objeto scanner    
 		 Lexer scanner = new Lexer(dataStream);   
@@ -127,7 +127,7 @@ public class Driver {
 		 symbols.trimToSize();  
 		 System.out.println("___________________________________________");
 		 //todo: incluir el código adicional para mostrar por pantalla el número de líneas, caracteres y símbolos encontrados en el programa.
-		 BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("grupo_50_prueba1OK.txt")));
+		 BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("grupo_EscabiaMishkinitse_pruebaOK2.txt")));
 		 int lineas = 0;
 		 int caracteres = 0;
 		 String lectura = br.readLine();

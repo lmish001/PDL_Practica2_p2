@@ -54,6 +54,7 @@ Int_Number = {NumLiteral}
 Dec_Number = {NumLiteral}"."{NumLiteral} | "."{NumLiteral}
 Hex_Number = 0 [xX] [1-9a-fA-F] {HexLiteral}
 Oct_Number = 0 [xX] 0 {OctLiteral}
+ScientificNotation = [0-9]"."{NumLiteral}[E][+-]{0,1}{NumLiteral}
 
 /*Comentarios*/
 Comentario = "#" {InputCharacter}* {LineTerminator}?
@@ -114,6 +115,7 @@ InputCharacter = [^\r\n]
   	  {Dec_Number} 	{ return new Symbol(DEC_NUMBER, Float.parseFloat(yytext())); }
       {Hex_Number} 	{ return new Symbol(INT_NUMBER, Integer.parseInt(yytext().substring(2, yytext().length()), 16));}
       {Oct_Number} 	{ return new Symbol(INT_NUMBER, Integer.parseInt(yytext().substring(3, yytext().length()), 8));}
+      {ScientificNotation} { return new Symbol(DEC_NUMBER, Float.parseFloat(yytext()));}
       {Identificador} { return new Symbol(IDENTIFICADOR, yytext()); }
       {Char} 		{ return new Symbol(CHAR, yytext()); }
 
